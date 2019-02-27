@@ -18,6 +18,7 @@ import SignIn from '@/pages/home/sign-in/SignIn'
 import TrainIndex from '@/pages/home/train/TrainIndex'
 import Train from '@/pages/home/train/Train'
 import CourseList from '@/pages/home/train/CourseList'
+import VideoPaly from '@/pages/home/train/VideoPaly'
 import Message from '@/pages/message/Message'
 import Contacts from '@/pages/contacts/Contacts'
 import PersonalCenter from '@/pages/personal-center/PersonalCenter'
@@ -134,10 +135,17 @@ const router = new Router({
     component:TrainIndex
     //component:Train
   },
+  /*工作台-培训-课程列表*/
   {
     path:"/course-list",
     name:"CourseList",
     component:CourseList
+  },
+  /*工作台-培训-播放视频*/
+  {
+    path:"/video-paly",
+    name:"VideoPaly",
+    component:VideoPaly
   },
   /*消息*/
   {

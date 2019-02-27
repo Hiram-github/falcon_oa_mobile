@@ -9,7 +9,7 @@
           <div class="select" @click="updateShowTypeListStatus()">类型&nbsp;&nbsp;<i class="fa fa-chevron-down" aria-hidden="true"></i></div>
         </div>
       </div>
-      <div class="content" v-show="isShowTypeLIst">
+      <div class="sel-content" v-show="isShowTypeLIst">
        <ul class="list">
         <li :class="['item',{'select':item.isSelect}]" v-for="(item,index) in typeList" :key="index" @click="updateTypeSelectStatus(item)">
           {{item.name}}
@@ -20,7 +20,29 @@
         <button class="btn confirm" @click="updateShowTypeListStatus()">确认</button>
       </div>
     </div>
-  </main>
+    <div class="task-list">
+     <header class="header">
+      <h3 class="title">任务进度</h3>
+    </header>
+    <ul class="list">
+      <li class="item" v-for="item in 8">
+        <div class="option">
+          <img src="/static/images/oa-mobile/home/train/video.jpg"/>
+          <div class="rate">20%</div>
+          <button class="play" @click="toVideoPaly()">
+            <i class="fa fa-play" aria-hidden="true"></i>
+            <!-- <i class="fa fa-pause" aria-hidden="true"></i> -->
+          </button>
+        </div>
+        <h2 class="title">总裁看报表</h2>
+        <div class="desc">
+          <span class="">运营管理</span>
+          <span class="">10课时</span>
+        </div>       
+      </li>
+    </ul>
+  </div>
+</main>
 </div>
 </template>
 <script>
@@ -43,29 +65,55 @@
 
     },
     methods:{
+     /**
+      *  @Description: 修改类型列表的显示状态
+      *  @Author: ykl
+      **/
       updateShowTypeListStatus(){
         const self=this
         self.isShowTypeLIst=!self.isShowTypeLIst;
       },
+     /**
+      *  @Description: 重置选择的类型
+      *  @Author: ykl
+      **/
       resetTypeSelct(){
         const self=this
         self.typeList.forEach((item)=>{
           item.isSelect=false;
         })
       },
+     /**
+      *  @Description: 修改选择的类型
+      *  @Author: ykl
+      **/
       updateTypeSelectStatus(item){
         const self=this
         self.resetTypeSelct()
         item.isSelect=!item.isSelect
-      }
-    }
-  }
-</script>
-<style lang="scss" scoped>
-.course-list{
+      },
+      /**
+       *  @Description: 跳转到视频播放页
+       *  @Author: ykl
+       **/
+       toVideoPaly(){
+         const self=this
+         self.$router.push({
+          path: '/video-paly',
+          query: {
+          }
+        })
+       }
+     }
+   }
+ </script>
+ <style lang="scss" scoped>
+ @import "../../../assets/style/common.scss";
+ .course-list{
   .main{
     width: 100%;
     height:auto;
+    position:relative;
     .top{
       height:.92rem;
       padding:0 .13rem 0 .37rem;
@@ -97,8 +145,10 @@
       }
     }
   }
-  .content{
+  .sel-content{
+    position: absolute;
     z-index:100;
+    background: #ffffff;
     .list{
       height: auto;
       min-height: 3rem;
@@ -138,6 +188,75 @@
       .confirm{
         color: #ffffff;
         background-color: #3587fc;
+      }
+    }
+  }
+  .task-list{
+    .list{
+      padding:.1rem .25rem 0 .27rem;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      .item{
+        width: 3.39rem; 
+        border:solid 1px #e9eaea;
+        margin-bottom: .23rem;
+        .option{
+          height: 1.9rem;
+          position: relative;
+          @include borderRadius(.1rem);
+          img{
+            width: 100%;
+            height: 100%;
+          }
+          .rate,.play{
+            height:.32rem;
+            position: absolute;
+            z-index:10;
+            text-align:center;
+            line-height: .32rem;
+            background:#000000;
+            color:#ffffff;
+            @include borderRadius(.06rem);
+          }
+          .rate{
+            width: .66rem;
+            font-weight: normal;
+            font-stretch: normal;
+            top:.07rem;
+            right:.07rem;
+            font-size: 0.18rem;
+          }
+          .play{
+            width: .5rem;
+            left:.1rem;
+            bottom:.1rem;
+
+
+          }
+        }
+        .title{
+          height:.51rem;
+          padding-left:.18rem;
+          border-bottom: solid 1px #e9eaea;
+          line-height: .51rem;
+          font-size: 0.24rem;
+          color: #333333;
+        }
+        .desc{
+          height: .59rem;
+          padding:0 .31rem 0 .15rem;
+          @include flexAndChildAlign(space-between);
+          line-height:.59rem;
+          font-size:.22rem;
+          border-bottom: solid 1px #e9eaea;
+          span:nth-child(1){
+            color: #3689fe;
+          }
+          span:nth-child(2){
+            color: #9f9d9b;
+          }
+        }
       }
     }
   }

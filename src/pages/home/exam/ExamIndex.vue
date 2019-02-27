@@ -313,6 +313,7 @@
  }
 </script>
 <style lang="scss" scoped>
+@import "../../../assets/style/common.scss";
 .exam{
   @include widthAndHeight(100%,auto);
   min-height: 100vh;
@@ -533,20 +534,5 @@
     }
   }
 }
-}
-//公共头标题样式
-.header{
- height:.72rem;
- padding-left:.11rem;
- padding:0 .32rem 0 .25rem;
- box-sizing: border-box;
- display: flex;
- justify-content:space-between;
- align-items: center;
- color:#3689fe;
- >h3{
-   border-left: .03rem solid #3689fe;
-   padding-left:.14rem;
- }
 }
 </style>
